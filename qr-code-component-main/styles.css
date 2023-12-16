@@ -35,12 +35,14 @@ body {
   font-family: 'Outfit', sans-serif;
   background-color: var(--surface);
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-block: 1rem;
 }
 
 /* MAIN */
 
 main {
-  width: 100%;
   height: 100%;
   display: grid;
   place-items: center;
@@ -74,5 +76,17 @@ main {
 
   & p {
     color: var(--text-1)
+  }
+}
+
+/* FOOTER */
+
+footer {
+  justify-self: flex-end;
+  font-size: 0.666rem;
+  text-align: center;
+  
+  & a {
+    color: slateblue;
   }
 }
