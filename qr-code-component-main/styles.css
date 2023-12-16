@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+:root {
+  --hsl-white: 0, 0%, 100%;
+  --hsl-light-gray: 212, 45%, 89%;
+  --hsl-gray-blue: 220, 15%, 55%;
+  --hsl-dark-blue: 218, 44%, 22%;
+
+  --white: hsl(var(--hsl-white));
+  --surface: hsl(var(--hsl-light-gray));
+  --text-1: hsl(var(--hsl-gray-blue));
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* BODY */
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--surface);
+  height: 100vh;
+}
+
+/* MAIN */
+
+main {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* CARD */
+
+.card {
+  --border-radius: 1rem;
+
+  background-color: var(--white);
+  padding: 1rem;
+  padding-bottom: 3rem;
+  max-width: 19rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2rem 3rem hsla(var(--hsl-dark-blue), 0.1);
+
+  & img {
+    margin-bottom: 1.5rem;
+    border-radius: calc(var(--border-radius) / 2);
+  }
+
+  & h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  & p {
+    color: var(--text-1)
+  }
+}
