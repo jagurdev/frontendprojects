@@ -1,0 +1,23 @@
+body {
+  
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-section {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+main {
+  background-color: red;
+  height: 100%;
+}

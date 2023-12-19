@@ -1,0 +1,65 @@
+:root {
+/** CSS DARK THEME PRIMARY COLORS */
+--color-primary-100: #e0ddd1;
+--color-primary-200: #e3e1d6;
+--color-primary-300: #e7e4db;
+--color-primary-400: #eae8e0;
+--color-primary-500: #eeece5;
+--color-primary-600: #f1f0ea;
+/** CSS DARK THEME SURFACE COLORS */
+--color-surface-100: #101114;
+--color-surface-200: #262729;
+--color-surface-300: #3d3e40;
+--color-surface-400: #565658;
+--color-surface-500: #707072;
+--color-surface-600: #8a8b8c;
+/** CSS DARK THEME MIXED SURFACE COLORS */
+--color-surface-mixed-100: #222224;
+--color-surface-mixed-200: #373738;
+--color-surface-mixed-300: #4c4c4e;
+--color-surface-mixed-400: #636365;
+--color-surface-mixed-500: #7b7b7d;
+--color-surface-mixed-600: #949495;
+}
+
+body {
+  background-color: var(--color-surface-100)
+}
+
+main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+dialog {
+  color: var(--color-primary-100);
+  background-color: var(--color-surface-200);
+  max-width: 33rem;
+  position: static;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+form > * {
+  margin-top: 1rem;
+}
+

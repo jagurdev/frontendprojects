@@ -1,0 +1,45 @@
+body {
+  background-color: darkblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  height: 100%;
+  display: grid;
+  grid-template: 1fr / repeat(3, 1fr);
+  font-family: sans-serif;
+  max-width: 90rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  height: 4rem;
+  margin: 0rem 0.5rem;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.card-info > * {
+  margin: 0.2rem;
+}
+
+.card-yellow {
+  background-color: lightyellow;
+}
+
+.card-blue {
+  background-color: lightblue;
+}
+
+.card-red {
+  background-color: lightcoral;
+}
