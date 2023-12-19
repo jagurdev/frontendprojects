@@ -1,0 +1,164 @@
+@import url(styles/reset.css);
+
+@font-face {
+  font-family: 'Jost';
+  src: url('static/Jost/Jost-VariableFont_wght.ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('static/Jost/Jost-Italic-VariableFont_wght.ttf');
+  font-style: italic;
+}
+
+:root {
+  --yellow: #fbffa7;
+  --blue: #b1c5ff;
+  --green: #b6ffc0;
+  --orange: #ff764d;
+  --purple: #d5b3ff;
+  --dark-blue: #0000ff;
+  --light-grey: #F3F3F3;
+}
+
+/*** BODY ***/
+body {
+  font-family: 'Jost';
+  background-color: var(--light-grey);
+}
+
+#main {
+  max-width: 100rem;
+  margin-inline: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/*** LINKS ***/
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/*** TEXT ***/
+.logo {
+  font-size: 10rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--orange) 50%, red);
+}
+
+/*** NAV ***/
+nav {
+  --link-margin: 1rem;
+
+  display: flex;
+  font-weight: 450;
+
+  margin: 1.4rem 2rem;
+
+  & img {
+    width: 3rem;
+    margin-right: calc(var(--link-margin) * 2);
+  }
+
+  & ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    > :first-child {
+      margin-right: var(--link-margin);
+    }
+
+    > :last-child {
+      margin-left: var(--link-margin);
+    }
+
+    > :not(:first-child, :last-child)
+      :not(.break-left) {
+      margin-inline: var(--link-margin);
+    }
+
+    .main-link {
+      font-size: 1.2rem;
+    }
+
+    .minor-link {
+      font-size: 1rem;
+    }
+  }
+}
+
+/*** MAIN ***/
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 80rem;
+  margin-inline: auto;
+
+  > div {
+    width: 100%;
+    margin-bottom: min(8rem, 8vw);
+  }
+}
+
+/*** CONTAINERS ***/
+.hero {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info {
+  max-width: 70vw;
+
+  & a:any-link {
+    color: var(--dark-blue);
+  }
+
+  & p {
+    line-height: 1.5;
+  }
+
+  & p:first-child {
+    font-size: 1.25rem;
+    font-weight: 450;
+  }
+
+  & p:not(:first-child) {
+    font-size: 1rem;
+  }
+
+  & p:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+/*** BACKGROUNDS ***/
+.code-bg {
+  background: url('static/top-down-coding.jpg') center;
+}
+
+/*** UTILITIES ***/
+.break-left {
+  margin-left: auto;
+}
+
+.orange-link:any-link {
+  color: var(--orange);
+}
+
+.blue-link:any-link {
+  color: var(--dark-blue);
+}
+
+.spacer {
+  background-color: var(--light-grey);
+  height: 2px;
+}
