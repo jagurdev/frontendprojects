@@ -55,6 +55,9 @@ body {
   font-family: 'Red Hat Display', sans-serif;
   height: 100vh;
   background: repeat-x url('images/pattern-background-desktop.svg') var(--surface-3);
+  display: flex;
+  flex-flow: column;
+  padding-block: 1rem;
 }
 
 /* MAIN */
@@ -196,4 +199,16 @@ button {
 button:hover {
   cursor: pointer;
   background-color: var(--brand-soft);
+}
+
+/* FOOTER */
+
+footer {
+  justify-self: flex-end;
+  font-size: 0.666rem;
+  text-align: center;
+  
+  & a {
+    color: slateblue;
+  }
 }
