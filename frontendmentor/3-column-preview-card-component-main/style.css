@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap');
+
+:root {
+  --bright-orange-hsl: 31, 77%, 52%;
+  --dark-cyan-hsl: 184, 100%, 22%;
+  --very-dark-cyan-hsl: 179, 100%, 13%;
+  --transparent-white-hsla: 0, 0%, 100%, 0.75;
+  --very-light-gray-hsl: 0, 0%, 95%;
+
+  /* Color Theme */
+  --surface-orange: hsl(var(--bright-orange-hsl));
+  --surface-cyan: hsl(var(--dark-cyan-hsl));
+  --surface-dark-cyan: hsl(var(--very-dark-cyan-hsl));
+  --surface-neutral: hsl(var(--very-light-gray-hsl));
+
+  --text-1: var(--surface-neutral);
+  --text-2: hsla(var(--transparent-white-hsla));
+
+  /* Font Theme */
+  --font-sans: 'Lexend Deca', sans-serif;
+  --font-display: 'Big Shoulders Display', sans-serif;
+
+  /* Line Height */
+  --font-lineheight-1: 1.25;
+  --font-lineheight-2: 1.5;
+
+  /* Font Sizes */
+  --font-size-1: 1rem;
+  --font-size-2: 1.1rem;
+  --font-size-3: 2.6rem;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  border: none;
+}
+
+/* BODY */
+
+body {
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
+  padding: 5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-1);
+  background: var(--surface-neutral);
+}
+
+/* MAIN */
+
+main {
+  display: grid;
+  place-items: center;
+  max-width: 58rem;
+}
+
+/* CARD-DECK */
+
+.card-deck {
+  display: grid;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  @media (min-width: 750px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* CARD */
+
+.card {
+  padding: 2.5rem;
+  display: grid;
+  gap: 2rem;
+
+  & h2 {
+    color: var(--text-1);
+    font-family: var(--font-display);
+    font-size: var(--font-size-3);
+    text-transform: uppercase;
+  }
+
+  & p {
+    color: var(--text-2);
+    line-height: var(--font-lineheight-2);
+  }
+
+  & button {
+    width: fit-content;
+
+    @media (min-width: 800px) {
+      margin-top: 4rem;
+    }
+  }
+
+  &.sedans {
+    background: var(--surface-orange);
+  }
+
+  &.suvs {
+    background: var(--surface-cyan);
+  }
+  
+  &.luxury {
+    background: var(--surface-dark-cyan);
+  }
+}
+
+/* BUTTON */
+
+button {
+  font-size: var(--font-size-1);
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  background: var(--surface-neutral);
+  border: 2px solid var(--text-1);
+
+  .sedans & {
+    color: var(--surface-orange);
+  }
+
+  .suvs & {
+    color: var(--surface-cyan);
+  }
+
+  .luxury & {
+    color: var(--surface-dark-cyan);
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--text-1);
+    background: none;
+    cursor: pointer; 
+  }
+
+  @media (min-width: 800px) {
+    font-size: var(--font-size-2);
+  }
+}
