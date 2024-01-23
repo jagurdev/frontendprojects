@@ -1,92 +1,140 @@
-# Frontend Mentor - 3-column preview card component
+# Frontend Mentor - 3-column preview card component solution
 
-![Design preview for the 3-column preview card component coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [3-column preview card component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/3column-preview-card-component-pH92eAR2-). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a basic understanding of HTML and CSS.**
+### Screenshot
 
-## The challenge
+![](./screenshot.jpg)
 
-Your challenge is to build out this 3-column preview card component and get it looking as close to the design as possible.
+### Links
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+- Live Site URL: [projects.jagur.dev/frontendmentor/3-column-preview-card-component-main](https://projects.jagur.dev/frontendmentor/3-column-preview-card-component-main)
 
-Your users should be able to:
+## My process
 
-- View the optimal layout depending on their device's screen size
-- See hover states for interactive elements
+### Built with
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+- Good ole HTML and CSS
 
-## Where to find everything
+### What I learned
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design.
+#### 1. A better way to place main and footer
+In my previous 2 frontendmentor projects I had used this code to center `<main>` inside of `<body>` and have `<footer>` at the bottom of the page:
+```css
+/* a worse way to place <main> and <footer> */
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`.
+main {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+footer {
+  justify-self: flex-end;
+}
+```
+The code showed its flaws on this project. At first glance, in the desktop view of the project, this method seemd to work fine. Then, when switching to mobile view, the contents of the page got pushed up and past the viewport, causing the contents of the page to be cut-off at the top. I realized that when I had no `block-padding` in `body`, all of the page content was in the middle and was fine. But as soon as `block-padding` was added to `body`, the contents of the page were pushed up and past the viewport. My theory is that this method forces `<main>`'s height to be `100vh`, causing `main` to be pushed up past `body` when any padding is added to the `body`, instead of `main` adapting and staying inside of `body`.
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+In the wake of the bug, I found this code using `grid` for both `<body>` and `<main>` to be much better and work as expected:
+```css
+/* a better way to place <main> and <footer> */
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+}
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+main {
+  display: grid;
+  place-items: center;
+}
+```
+This works as expected, and I believe it to be a nice solution. This places `<main>` in the inline-center of `<body>` and centers `<main>`'s contents. Also, we don't need to tell `<footer>` how to place itself, as `grid-template-rows: 1fr auto` makes `<footer>` take up only the space it needs, and `<main>` take up all of the other space.
 
-## Building your project
+#### 2. Theming with CSS nesting
+CSS nesting continues to bring me joy. Now that I understand that `&` compiles to the parent selector I was able to use nesting for theming of my buttons. Here is the code for my buttons without all of the other HTML:
+```html
+<div class="card sedans">
+  <button>Learn More</button>
+</div>
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+<div class="card suvs">
+  <button>Learn More</button>
+</div>
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+<div class="card luxury">
+  <button>Learn More</button>
+</div>
+```
+And the color theme CSS code for the buttons:
+```css
+button {
+  .sedans & {
+    color: var(--surface-orange);
+  }
 
-## Deploying your project
+  .suvs & {
+    color: var(--surface-cyan);
+  }
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+  .luxury & {
+    color: var(--surface-dark-cyan);
+  }
+}
+```
+How clean is that?! I was so pleased I was able to theme my buttons this way. It allows for my button theme code to all be inside of my button selector. For reference, this is basically what the code above compiles to:
+```css
+.sedans button {
+  color: var(--surface-orange);
+}
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+.suvs button {
+  color: var(--surface-cyan);
+}
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+.luxury button {
+  color: var(--surface-dark-cyan);
+}
+```
 
-## Create a custom `README.md`
+### Continued development
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+- Explore and stretch myself with layout design using flexbox and grid. Specifically, using grid more as I continue to learn how awesome it is. 
+- Become familiar with what is happening with the CSS reset I have been copying and pasting. It might be a good idea to also explore other resets to see other's ideas on what a good reset looks like. I would like to know exactly what is happening there, why we need to use it, and maybe how I could develop my own or add onto the simple one I use now.
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+### Useful resources
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) - I seem to always have a couple of tabs open with the MDN Web Docs while doing any kind of web development. An absolute goldmine of a resource. It's no wonder so many web developers praise it.
 
-## Submitting your solution
+- [ChatGPT](http://chat.openai.com) - Debugging with ChatGPT feels like cheating. It's so easy to get explanations why my CSS is working the way it is or why it isn't working the way I thought it would. It also does a great job of helping me find names for the things in CSS and HTML that I want to do but don't know the names for yet.
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+- [Kevin Powell (YouTube)](https://www.youtube.com/@KevinPowell) - I can't get enough of this guy. His videos are an absolute goldmine as well. I am always learning new and better ways to do things. I cannot praise this guy enough.
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+## Author
 
-## Sharing your solution
+- Website - [jagur.dev](https://jagur.dev)
 
-There are multiple places you can share your solution:
+## Acknowledgments
 
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
-
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback.
-
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
-
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+I have to acknowledge again the above resources. If it wasn't for the man [Kevin Powell](https://www.youtube.com/@KevinPowell), I would not be having such a blast with frontend web development. Huge thanks to the man. In the time I dedicate to learning frontend web dev I am probably doing one of 3 things: building a project, watching [Kevin Powell](https://www.youtube.com/@KevinPowell), or studying [MDN Web Docs](https://developer.mozilla.org/en-US/). Thank you to these resources and to the community for making web development so open and so much fun.
