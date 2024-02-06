@@ -77,15 +77,15 @@ body {
   min-height: 100vh;
   display: grid;
   justify-items: center;
+  align-content: start;
+  padding: 5rem 2rem;
+  gap: 4rem;
 }
 
 /* MAIN */
 main {
   display: grid;
-  gap: 4rem;
   justify-items: center;
-  align-content: start;
-  padding: 5rem 2rem;
 }
 
 /* HEADER */
