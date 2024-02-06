@@ -122,6 +122,7 @@ h1 {
   gap: 2rem;
   container: card-deck / inline-size;
   width: 100%;
+  max-width: 74rem;
 
   /* TWO-ROW LAYOUT */
   @container (28rem < width < 60rem) {
@@ -133,7 +134,6 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     align-items: center;
-    max-width: 74rem;
 
     > :nth-child(1),
     > :nth-child(4) {
