@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
+:root {
+  --red-hsl: 0, 78%, 62%;
+  --cyan-hsl: 180, 62%, 55%;
+  --orange-hsl: 34, 97%, 64%;
+  --blue-hsl: 212, 86%, 64%;
+  --very-dark-blue-hsl: 234, 12%, 34%;
+  --grayish-blue-hsl: 229, 6%, 66%;
+  --very-light-gray-hsl: 0, 0%, 98%;
+
+  /* Color Theme */
+  --text-1: hsl(var(--very-dark-blue-hsl));
+  --text-2: hsl(var(--grayish-blue-hsl));
+
+  --surface-1: white;
+  --surface-2: hsl(var(--very-light-gray-hsl));
+
+  --accent-red: hsl(var(--red-hsl));
+  --accent-cyan: hsl(var(--cyan-hsl));
+  --accent-orange: hsl(var(--orange-hsl));
+  --accent-blue: hsl(var(--blue-hsl));
+
+  /* Font Theme */
+  --font-sans: Poppins, sans-serif;
+
+  /* Font Weights */
+  --font-weight-2: 200;
+  --font-weight-4: 400;
+  --font-weight-6: 600;
+
+  /* Line Height */
+  --line-height-1: 1.25;
+  --line-height-2: 1.75;
+
+  /* Font Sizes */
+  --font-size-0: 0.9rem; 
+  --font-size-1: 1rem;
+  --font-size-2: 1.3rem;
+
+  /* Fluid Font Sizes */
+  --font-size-fluid-1: clamp(1rem, 2vw, 1.5rem);
+  --font-size-fluid-2: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+html {
+  background-color: var(--surface-2);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text-1);
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  border: none;
+}
+
+/* BODY */
+body {
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
+}
+
+/* MAIN */
+main {
+  display: grid;
+  gap: 4rem;
+  justify-items: center;
+  align-content: start;
+  padding: 5rem 2rem;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  max-width: 58ch;
+  display: grid;
+  gap: 2ch;
+
+  & p {
+    color: var(--text-2);
+  }
+}
+
+h1 {
+  font-size: var(--font-size-fluid-2);
+  font-weight: var(--font-weight-2);
+
+  & strong {
+    font-weight: var(--font-weight-6);
+  }
+
+  & strong::before {
+    content: "";
+    display: block;
+  }
+}
+
+/* CARD-DECK */
+.card-deck {
+  display: grid;
+  gap: 2rem;
+
+  /* TABLET LAYOUT */
+  @media (30rem < width < 60rem) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* DESKTOP LAYOUT */
+  @media (width >= 60rem) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    max-width: 74rem;
+
+    > :nth-child(1),
+    > :nth-child(4) {
+      grid-row: span 2;
+    }
+
+    > :nth-child(2) {
+      grid-area: 1 / 2;
+    }
+
+    > :nth-child(3) {
+      grid-area: 2 / 2;
+    }
+  }
+}
+
+/* CARD */
+.card {
+  min-height: clamp(23ch, 18vw, 26ch);
+  background-color: var(--surface-1);
+  display: grid;
+  gap: 0.5ch;
+  padding: 1.5rem 2rem;
+  grid-template-rows: auto auto 1fr;
+  border-top: 4px solid;
+  border-radius: 5px;
+  box-shadow: 0px 12px 20px hsla(var(--blue-hsl), 0.2);
+
+  & h2 {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-6);
+  }
+
+  & p {
+    color: var(--text-2);
+    font-size: var(--font-size-0);
+    line-height: var(--line-height-2);
+  }
+
+  & img {
+    place-self: end;
+  }
+
+  &.red {
+    border-color: var(--accent-red);
+  }
+
+  &.cyan {
+    border-color: var(--accent-cyan);
+  }
+
+  &.orange {
+    border-color: var(--accent-orange);
+  }
+
+  &.blue {
+    border-color: var(--accent-blue);
+  }
+}
