@@ -84,6 +84,8 @@ body {
 
 /* MAIN */
 main {
+  container: main / inline-size;
+  width: 100%;
   display: grid;
   justify-items: center;
 }
@@ -118,15 +120,17 @@ h1 {
 .card-deck {
   display: grid;
   gap: 2rem;
+  container: card-deck / inline-size;
+  width: 100%;
 
-  /* TABLET LAYOUT */
-  @media (30rem < width < 60rem) {
+  /* TWO-ROW LAYOUT */
+  @container (28rem < width < 60rem) {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
-  /* DESKTOP LAYOUT */
-  @media (width >= 60rem) {
+  /* DIAMOND LAYOUT */
+  @container (width >= 60rem) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -150,7 +154,7 @@ h1 {
 
 /* CARD */
 .card {
-  min-height: clamp(23ch, 18vw, 26ch);
+  min-height: clamp(23ch, 20cqi, 26ch);
   background-color: var(--surface-1);
   display: grid;
   gap: 0.5ch;
