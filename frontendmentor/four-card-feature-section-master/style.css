@@ -125,13 +125,11 @@ h1 {
 
   /* TWO-ROW LAYOUT */
   @container (28rem < width < 60rem) {
-    display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
   /* DIAMOND LAYOUT */
   @container (width >= 60rem) {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     align-items: center;
