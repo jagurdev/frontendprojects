@@ -1,91 +1,107 @@
-# Frontend Mentor - Four card feature section
+# Frontend Mentor - Four card feature section solution
 
-![Design preview for the Four card feature section coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Four card feature section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/four-card-feature-section-weK1eFYK). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a basic understanding of HTML and CSS.**
+### Screenshot
 
-## The challenge
+![](./screenshot.jpg)
 
-Your challenge is to build out this feature section and get it looking as close to the design as possible.
+### Links
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+- Live Site URL: [projects.jagur.dev/frontendmentor/four-card-feature-section-master](https://projects.jagur.dev/frontendmentor/four-card-feature-section-master)
 
-Your users should:
+## My process
 
-- View the optimal layout for the site depending on their device's screen size
+### Built with
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+- Good ole HTML and CSS
 
-## Where to find everything
+### What I learned
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+#### 1. Complex Grid Layout
+The grid layout for the desktop design of the cards for this project were particularly challenging. It took some trial and error, but ultimately I came up with a solution that I like:
+```css
+@container (width >= 60rem) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+  > :nth-child(1),
+  > :nth-child(4) {
+    grid-row: span 2;
+  }
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+  > :nth-child(2) {
+    grid-area: 1 / 2;
+  }
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+  > :nth-child(3) {
+    grid-area: 2 / 2;
+  }
+}
+```
+A breakdown of this code:
+- a grid with 3 columns and 2 rows
+- ensure the height of the grid-items don't expand 100% and ensure the cards are centered vertically with `align-items: center`
+- ensure the 1st and 4th cards take up the first and third columns respectively
+- place the 2nd card in the second column in the first row
+- place the 3rd card in the second column in the second row
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+#### 2. Clamp
+This was my first time playing around with `clamp`. I used it for the font size of `h1` and for, where I most enjoyed using it, the height of `.card`:
+```css
+min-height: clamp(23ch, 23cqi, 26ch);
+```
+This code responsively adjusts the height of the card. `23cqi` makes the card's height grow and shrink based on the width of the container, `.card-deck` in this case. 
 
-## Building your project
+#### 3. Using a Wrapper for `header` and `main`
+Up until now I've tried avoiding using wrappers. I know it's a very common practice to have wrappers everywhere in the HTML. I had to cave with this project and put a wrapper to separate `header` and `main` from the `footer`... so the HTML l layout looks like this:
+```html
+<div class="main-wrapper">
+  <header>
+  <main>
+</div>
+<footer>
+```
+This was the only way I could find to properly place the footer. I wanted to keep the layout I had come up with before placing the footer, but having `header`, `main`, and `footer` all under `body` proved a challenge in placing the footer where I wanted it.
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+### Continued development
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+- More practice with complex grid layouts
+- More practice with full-document layout (like the layout I had to solve for this project with the `main-wrapper`)
+- Continue experimenting with `clamp`
+- Continue experimenting with container queries and container query length units
 
-## Deploying your project
+### Useful resources
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+- [Kevin Powell (YouTube)](https://www.youtube.com/@KevinPowell) - The man himself. I have to attribute a lot of my learnings to him. His videos are amazing and I would not be practicing nor learning as quickly as I am without him. Specifically for this project, these were the videos I took inspiration from:
+  - [Learn how to use Media queries & Container queries (Video)](https://youtu.be/2rlWBZ17Wes?si=IvjZcMzNM9J_VuDg)
+  - [Responsive layout practice for beginners (Video)](https://youtu.be/JFbxl_VmIx0?si=RKqHTSD2QsFxftyj) - in this video he works through this exact project. I decided to abstain from watching the video until I have finished committing everything for this project on my own. I am curious to see his solution and where we diverged.
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) - I always have multiple tabs of the Web Docs open while doing web dev. It is invaluable, and came in big help while practicing with new things like `clamp` and container queries in this project. I also stole the `.main-wrapper` from them for my wrapper.
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+- [Open Props](https://open-props.style) - I almost always have this website open while working on web dev. Although I didn't use the framework in this project, I like using their variable conventions for colors, theming, and typography.
 
-## Create a custom `README.md`
+## Author
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+- Website - [jagur.dev](https://jagur.dev)
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+## Acknowledgments
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
-
-## Submitting your solution
-
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
-
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
-
-## Sharing your solution
-
-There are multiple places you can share your solution:
-
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
-
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
-
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
-
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+As always, I have to acknowledge the man [Kevin Powell (YouTube)](https://www.youtube.com/@KevinPowell). I wouldn't be having so much fun learning frontend without him. I didn't think I would enjoy frontend web development before I discovered his videos. In his intro to his videos he says he "helps people fall in love with CSS, or at least not be frustrated by it."
