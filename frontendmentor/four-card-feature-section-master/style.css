@@ -160,7 +160,7 @@ main {
 
 /* CARD */
 .card {
-  min-height: clamp(23ch, 20cqi, 26ch);
+  min-height: clamp(23ch, 23cqi, 26ch);
   background-color: var(--surface-1);
   display: grid;
   gap: 0.5ch;
