@@ -75,19 +75,19 @@ button {
 /* BODY */
 body {
   min-height: 100vh;
+  padding-block: 5rem 1rem;
+  padding-inline: 2rem;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+/* MAIN-WRAPPER */
+.main-wrapper {
   display: grid;
   justify-items: center;
   align-content: start;
-  padding: 5rem 2rem;
   gap: 4rem;
-}
-
-/* MAIN */
-main {
-  container: main / inline-size;
-  width: 100%;
-  display: grid;
-  justify-items: center;
+  margin-bottom: 5rem;
 }
 
 /* HEADER */
@@ -114,6 +114,14 @@ h1 {
     content: "";
     display: block;
   }
+}
+
+/* MAIN */
+main {
+  container: main / inline-size;
+  width: 100%;
+  display: grid;
+  justify-items: center;
 }
 
 /* CARD-DECK */
@@ -191,5 +199,15 @@ h1 {
 
   &.blue {
     border-color: var(--accent-blue);
+  }
+}
+
+/* ATTRIBUTION */
+.attribution {
+  font-size: 0.666rem;
+  text-align: center;
+
+  & a {
+    color: slateblue;
   }
 }
